@@ -1,6 +1,6 @@
 var request = require('request');
 var Combinatorics = require('js-combinatorics').Combinatorics;
-var SetCollection = require("collections/set");
+var SetCollection = require('collections/set');
 var md5 = require('MD5');
 
 
@@ -35,7 +35,7 @@ function findSecretPhrase(wordlist) {
 	var optimizedWordArray = optimizeWordArray(wordArray);
 	
 	//Step 3: Find the secret phrase
-	var secretPhrase = findSecretAnagram(optimizedWordArray);
+	var secretPhrase = extractSecretPhrase(optimizedWordArray);
 	
 	//Output the result
 	console.log('----------- RESULT -----------');
@@ -88,7 +88,7 @@ function optimizeWordArray(wordArray) {
 }
 
 
-function findSecretAnagram(wordArray) {
+function extractSecretPhrase(wordArray) {
 	console.log('----------- STEP 3: Find secret phrase -----------');
 
 	//Calclate histogram for the anagram letters (how many times is each character represented)
@@ -99,32 +99,31 @@ function findSecretAnagram(wordArray) {
 	  return b.length - a.length;
 	});
 
-	// Find the possible combinations of three word using "intelligent" rules
+	// TODO - Make recursive n-level
+	// Find the relevant combinations - If the combination is no longer a subset of the anagram character histogram, abandon that path
 	for(var x = 0; x < wordArray.length; x++) {
-		if(isWordSubsetOfHistogram(wordArray[x], anagramLetterHistogram)) {
-			for(var y = 0; y < wordArray.length; y++) {
-				if(isWordSubsetOfHistogram(wordArray[x] + wordArray[y], anagramLetterHistogram)) {
-					for(var z = 0; z < wordArray.length; z++) {
+		for(var y = 0; y < wordArray.length; y++) {
+			if(isWordSubsetOfHistogram(wordArray[x] + wordArray[y], anagramLetterHistogram)) {
+				for(var z = 0; z < wordArray.length; z++) {
 
-						var wordHistogram = getCharacterHistogram(wordArray[x] + wordArray[y] + wordArray[z]);
+					var wordHistogram = getCharacterHistogram(wordArray[x] + wordArray[y] + wordArray[z]);
 
-						// Check if the histograms of the current combination and the supplied secret phrase anagram are equal
-						// If they are, they are anagrams of each other
-						if(areHistogramsEqual(wordHistogram, anagramLetterHistogram)) {
-							
-							var anagram = [wordArray[x], wordArray[y], wordArray[z]];
+					// Check if the histograms of the current combination and the supplied secret phrase anagram are equal
+					// If they are, they are anagrams of each other
+					if(areHistogramsEqual(wordHistogram, anagramLetterHistogram)) {
+						
+						var anagram = [wordArray[x], wordArray[y], wordArray[z]];
 
-							var secret = getSecretPhrase(anagram);
-							if(secret){
-								return secret;
-							}
+						var secret = getSecretPhrase(anagram);
+						if(secret){
+							return secret;
 						}
 					}
 				}
 			}
 		}
+		
 		console.log('Progres: %s / %s - Word done: %s', x+1, wordArray.length, wordArray[x]);
-
 	}
 }
 
