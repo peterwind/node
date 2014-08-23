@@ -14,7 +14,7 @@ var MD5_VALUE_OF_SECRET_PHRASE = '4624d200580677270a54ccff86b9610e';
 * It fetches the wordlist and finds the secret phrase 
 */
 request.get('http://followthewhiterabbit.trustpilot.com/cs/wordlist', function handleWordList(error, response, body) {
-    if (!error && response.statusCode == 200) {
+    if (!error && response.statusCode === 200) {
         findSecretPhrase(body);
     } else {
     	console.log('The wordlist could not be fetched');
@@ -145,7 +145,7 @@ function getSecretPhrase(anagram) {
 	for(var i = 0; i<permutations.length; i++) {
 		var anagramWord = permutations[i].join(' ');
 		var md5Sum = md5(anagramWord);
-		if(md5Sum == MD5_VALUE_OF_SECRET_PHRASE) {
+		if(md5Sum === MD5_VALUE_OF_SECRET_PHRASE) {
 			return anagramWord; 
 		}
 	}
@@ -169,7 +169,7 @@ function isWordSubsetOfHistogram(word, histogram) {
 	// 2. More appearances of a letter in the word than in the anagram
 	for(var letter in wordHistogram) {
 		if(wordHistogram.hasOwnProperty(letter)) {
-			if(!anagramHistogram.hasOwnProperty(letter) || wordHistogram[letter] > anagramHistogram[letter])
+			if(!histogram.hasOwnProperty(letter) || wordHistogram[letter] > histogram[letter])
 			{
 				return false;
 			}
