@@ -5,6 +5,27 @@ Possible solution for the Trustpilot backend challenge.
 
 The problem is described on http://followthewhiterabbit.trustpilot.com/cs/step3.html, and the challenge is basically to find a specific anagram for the sentence "poultry outwits ants" on the basis of a supplied list of words (~100k words).
 
+## Running the anagram solver
+To run the anagram solver you should have node.js and npm installed and configured on your PATH.
+
+You first need to install the dependencies of the anagram solver using the command:
+
+```
+npm install
+```
+
+The anagram solver can then be run by issuing the following command:
+
+```
+node anagramfinder_recursive.js
+```
+or
+```
+node anagramfinder_queue.js
+```
+
+## Strategy / Thoughts
+
 One could choose to use brute force, but that would mean checking all permutations of the words in the dictionary up to a certain length. That is a lot of permutations and it is not feasible to check all of them. 
 
 Instead I have chosen to use the following procedure:
