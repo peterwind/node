@@ -119,7 +119,8 @@ function extractSecretPhrase(wordlistArray) {
 	// Find the relevant combinations by doing a depth-first iterative search 
 	// (one could have used recursion, however the stack limit of node.js gets into the way)
 	// 
-	// The algorithm goes to a maximum depth - The correct value of the depth is found by experimenting (increase with one until the answer is found).
+	// The algorithm goes to a maximum depth - 
+	// The correct value of the depth is found by experimenting (increase with one until the answer is found).
 
 
 	// Create a queue for containing the words which needs to be investigated
