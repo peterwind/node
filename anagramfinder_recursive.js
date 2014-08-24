@@ -171,10 +171,7 @@ function recursivelyFindSecretPhrase(wordArray, wordList, anagramLetterHistogram
 					}
 				} else {
 					if(depth < MAX_SEARCH_DEPTH) {
-						recursivelyFindSecretPhrase(copyArray, 
-													wordList, 
-													anagramLetterHistogram, 
-													depth+1);	
+						recursivelyFindSecretPhrase(copyArray, wordList, anagramLetterHistogram, depth+1);	
 					}						
 				}
 			}
