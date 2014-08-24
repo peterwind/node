@@ -45,3 +45,5 @@ I have made two implementations which are quite similar. Both uses the same recu
 2. **anagramfinder_queue.js** - Simulates recursion using a LIFO queue.
 
 Both of the solutions gets the correct result, but due to limitations in the number of concurrent recursive calls in node.js, I had to simulate the recursion using a LIFO queue. Both of the solutions uses a limit on the depth of the algorithm. The limit should be set to the number of words in the desired sentence, however this can not be known beforehand. I have found the limit to be 3, but only by raising the limit one by one until the solution was found.
+
+One could find even better heuristics or optimizations to the algorithms, but as my current solutions finds the correct answer in a couple of minutes, i decided to stop :-). 
