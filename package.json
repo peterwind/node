@@ -1,0 +1,11 @@
+{
+  "name": "anagram-solver",
+  "description": "Anagram-solver",
+  "dependencies": {
+    "request": "*",
+    "js-combinatorics": "*",
+    "collections": "*",
+    "MD5": "*",
+    "dequeue": "*"
+  }
+}

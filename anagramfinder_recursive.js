@@ -161,7 +161,7 @@ function recursivelyFindSecretPhrase(wordArray, wordList, anagramLetterHistogram
 				// otherwise the current word is still only a subset of the anagram.
 				if(areHistogramsEqual(wordHistogram, anagramLetterHistogram)) {
 					
-					//console.log("Anagram found %s",copyArray);
+					console.log("Anagram found %s",copyArray);
 
 					var secret = getSecretPhrase(copyArray);
 					if(secret){

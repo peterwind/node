@@ -148,7 +148,7 @@ function extractSecretPhrase(wordlistArray) {
 			// otherwise the current word is still only a subset of the anagram.
 			if(word.length === 18 && areHistogramsEqual(wordHistogram, anagramLetterHistogram)) {
 
-				//console.log('Anagram found: %s - Queue length: %s',wordArray, queue.length);
+				console.log('Anagram found: %s - Queue length: %s',wordArray, queue.length);
 
 				var secret = getSecretPhrase(wordArray);
 				if(secret){
